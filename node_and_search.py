@@ -68,6 +68,7 @@ class SearchAlgorithm:
         checked_states = []  # A list for adding visited states in it
         node_counter = 0    # A counter for counting whole branches
         frontier = Queue()
+        process_time_1 = process_time()
         '''
         Start with the Root Node which is
         first state all miss and canns are in the right side 
@@ -84,16 +85,17 @@ class SearchAlgorithm:
 
             if curr_node.goal_state():
                 stop = True
+                process_time_2 = process_time()
                 if statistics:   # statistics = true
                     pid = os.getpid()
                     process = psutil.Process(pid)
                     memory_use = process.memory_info()[0] / 2. ** 30
                     print('memory use:', memory_use)
-                    print("Elapsed time (s):", process_time())
+                    print("Elapsed time (s):", (process_time_2 - process_time_1))
                     print("Solution found at depth:", curr_node.depth)
                     print("Number of nodes explored:", node_counter)
                     print("Cost of solution:", curr_node.cost)
-                    print("Estimated effective branching factor:", )  # TODO: We need to calculate and add effective branching
+                    print("Estimated effective branching factor:", )  # TODO
                     print("------------------------------------")
                 return curr_node
 
@@ -130,7 +132,7 @@ class SearchAlgorithm:
                         print("Solution found at depth:", v.depth)
                         print("Number of nodes explored:", node_counter)
                         print("Cost of solution:", v.cost)
-                        print("Estimated effective branching factor:", )
+                        print("Estimated effective branching factor:", v.successor().qsize())
                         print("------------------------------------")
                     result = v
                     # print(v.action, "*: ", v.state.state)
