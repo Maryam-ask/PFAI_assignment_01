@@ -19,11 +19,11 @@ def main():
     sa = SearchAlgorithm(mc)
     # print(sa)
     # print(mc)
-    solution = sa.bfs()
+    # solution = sa.bfs(True)
     # solution.pretty_print_solution1(False)
     #solution.pretty_print_solution(True)
 
-    #solution = sa.dfs(sa.start, [], False)
+    solution = sa.dfs(sa.start, [], False, True)
     solution.pretty_print_solution(True)
     #print(dfs_rec.action, "**: ", dfs_rec.state.state)
     #print(dfs_rec)

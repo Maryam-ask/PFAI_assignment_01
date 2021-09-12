@@ -106,7 +106,7 @@ class SearchAlgorithm:
                 # Add the node to the visited states for next checking
                 checked_states.append(v.state.state)
 
-    def dfs(self, node, visited, has_found):
+    def dfs(self, node, visited, has_found, statistics=False, node_counter=0):
 
         visited.append(node.state.state)
         # print(node.action, ": ", node.state.state)
@@ -120,11 +120,22 @@ class SearchAlgorithm:
                 if v.goal_state():
                     # has_found = True
                     # successor = Queue()
+                    if statistics:  # statistics = true
+                        pid = os.getpid()
+                        process = psutil.Process(pid)
+                        memory_use = process.memory_info()[0] / 2. ** 30
+                        print('memory use:', memory_use)
+                        print("Elapsed time (s):", process_time())
+                        print("Solution found at depth:", v.depth)
+                        print("Number of nodes explored:", node_counter)
+                        print("Cost of solution:", v.cost)
+                        print("Estimated effective branching factor:", )
                     result = v
                     # print(v.action, "*: ", v.state.state)
                     return result
                 else:
-                    result = self.dfs(v, visited, has_found)
+                    node_counter += 1
+                    result = self.dfs(v, visited, has_found, statistics, node_counter)
                     return result
 
 '''
