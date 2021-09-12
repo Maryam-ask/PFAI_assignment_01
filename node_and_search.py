@@ -63,6 +63,7 @@ class SearchAlgorithm:
 
     def __init__(self, problem):
         self.start = Node(problem)
+        self.start_process = process_time()
 
     def bfs(self, statistics=False):  # A parameter statistics to show information about search nodes if statistics=True
         checked_states = []  # A list for adding visited states in it
@@ -126,7 +127,7 @@ class SearchAlgorithm:
                         process = psutil.Process(pid)
                         memory_use = process.memory_info()[0] / 2. ** 30
                         print('memory use:', memory_use)
-                        print("Elapsed time (s):", process_time())
+                        print("Elapsed time (s):", process_time()-self.start_process)
                         print("Solution found at depth:", v.depth)
                         print("Number of nodes explored:", node_counter)
                         print("Cost of solution:", v.cost)
