@@ -109,7 +109,7 @@ class SearchAlgorithm:
     def dfs(self, node, visited, has_found):
 
         visited.append(node.state.state)
-        print(node.action, ": ", node.state.state)
+        # print(node.action, ": ", node.state.state)
 
         if node.goal_state():
             has_found = True
@@ -118,10 +118,10 @@ class SearchAlgorithm:
             v = successor.get()
             if v.state.state not in visited:
                 if v.goal_state():
-                    has_found = True
-                    successor = Queue()
+                    # has_found = True
+                    # successor = Queue()
                     result = v
-                    print(v.action, "*: ", v.state.state)
+                    # print(v.action, "*: ", v.state.state)
                     return result
                 else:
                     result = self.dfs(v, visited, has_found)
