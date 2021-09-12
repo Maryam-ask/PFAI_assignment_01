@@ -64,7 +64,7 @@ class SearchAlgorithm:
     def __init__(self, problem):
         self.start = Node(problem)
 
-    def bfs(self, statistics=False):
+    def bfs(self, statistics=False):  # A parameter statistics to show information about search nodes if statistics=True
         checked_states = []  # A list for adding visited states in it
         node_counter = 0    # A counter for counting whole branches
         frontier = Queue()
