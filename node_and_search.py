@@ -87,8 +87,8 @@ class SearchAlgorithm:
                 if statistics:   # statistics = true
                     pid = os.getpid()
                     process = psutil.Process(pid)
-                    memoryUse = process.memory_info()[0] / 2. ** 30
-                    print('memory use:', memoryUse)
+                    memory_use = process.memory_info()[0] / 2. ** 30
+                    print('memory use:', memory_use)
                     print("Elapsed time (s):", process_time())
                     print("Solution found at depth:", curr_node.depth)
                     print("Number of nodes explored:", node_counter)
@@ -127,18 +127,14 @@ class SearchAlgorithm:
                     result = self.dfs(v, visited, has_found)
                     return result
 
-
+'''
     def dfs_it(self):
 
         checked_states = [self.start.state.state]  # A set for already visited states
                                                    # Mark the first state (Root Node) as Visited
 
         frontier = Queue()
-        '''
-        Start with the Root Node which is
-        first state all miss and canns are in the right side 
-        and the boat is 'r'
-        '''
+
         frontier.put(self.start)
         stop = False
 
@@ -165,7 +161,8 @@ class SearchAlgorithm:
                     frontier.put(v)
                     if successor.empty():
                         successor = v.successor()
-    '''
+'''
+'''
     def dls(self, curr_node, limit):
         if curr_node.goal_state():
             return True
@@ -184,18 +181,14 @@ class SearchAlgorithm:
             if self.dls(self.start, limit):
                 return True
             return False
-    '''
-
+'''
+'''
     def dls(self, limit):
         checked_states = set()  # A set for already visited states
         checked_states.add(self.start)  # Mark the first state (Root Node) as Visited
 
         frontier = Queue()
-        '''
-        Start with the Root Node which is
-        first state all miss and canns are in the right side 
-        and the boat is 'r'
-        '''
+
         frontier.put(self.start)
         stop = False
 
@@ -214,3 +207,4 @@ class SearchAlgorithm:
                 if successor not in checked_states:  # Check if the state has already been visited
                     # Add the node to the visited states for next checking
                     frontier.put(successor.get())
+'''
