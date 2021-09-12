@@ -94,6 +94,7 @@ class SearchAlgorithm:
                     print("Number of nodes explored:", node_counter)
                     print("Cost of solution:", curr_node.cost)
                     print("Estimated effective branching factor:", )  # TODO: We need to calculate and add effective branching
+                    print("------------------------------------")
                 return curr_node
 
             successor = curr_node.successor()
@@ -130,6 +131,7 @@ class SearchAlgorithm:
                         print("Number of nodes explored:", node_counter)
                         print("Cost of solution:", v.cost)
                         print("Estimated effective branching factor:", )
+                        print("------------------------------------")
                     result = v
                     # print(v.action, "*: ", v.state.state)
                     return result
