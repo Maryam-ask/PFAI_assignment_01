@@ -3,7 +3,7 @@ Define nodes of search tree and vanilla bfs search algorithm
 
 Author: Tony Lindgren
 
-Completed by: Maryam Askari & Mahtab BMohammadi
+Completed by: Maryam Askari & Mahtab Babamohammadi
 '''
 
 from queue import *
@@ -64,6 +64,7 @@ class SearchAlgorithm:
     def __init__(self, problem):
         self.start = Node(problem)
         self.start_process = process_time()
+        self.node_counter = 0
 
     def bfs(self, statistics=False):  # A parameter statistics to show information about search nodes if statistics=True
         checked_states = []  # A list for adding visited states in it
@@ -108,19 +109,19 @@ class SearchAlgorithm:
                 # Add the node to the visited states for next checking
                 checked_states.append(v.state.state)
 
-    def dfs(self, node, visited, has_found, statistics=False, node_counter=0):
+    def dfs(self, curr_node, visited, has_found, statistics=False, node_counter=0):
 
-        visited.append(node.state.state)
+        visited.append(curr_node.state.state)
         # print(node.action, ": ", node.state.state)
 
-        if node.goal_state():
+        if curr_node.goal_state():
             has_found = True
-        successor = node.successor()
+        successor = curr_node.successor()
         while not successor.empty():
             v = successor.get()
             if v.state.state not in visited:
                 if v.goal_state():
-                    # has_found = True
+                    has_found = True
                     # successor = Queue()
                     if statistics:  # statistics = true
                         pid = os.getpid()
@@ -141,7 +142,59 @@ class SearchAlgorithm:
                     result = self.dfs(v, visited, has_found, statistics, node_counter)
                     return result
 
-'''
+    def dls(self, curr_node, visited, has_found, limit, statistics=False):
+        if limit == 0:
+            if curr_node.goal_state():
+                has_found = True
+                return curr_node
+        elif limit > 0:
+            visited.append(curr_node.state.state)
+            # print(node.action, ": ", node.state.state)
+
+            if curr_node.goal_state():
+                has_found = True
+            successor = curr_node.successor()
+            while not successor.empty():
+                v = successor.get()
+                if v.state.state not in visited:
+                    if v.goal_state():
+                        has_found = True
+                        # successor = Queue()
+                        result = v
+                        # print(v.action, "*: ", v.state.state)
+                        return result
+                    else:
+                        self.node_counter += 1
+                        result = self.dls(v, visited, has_found, limit-1, statistics)
+                        return result
+
+    def ids(self, statistics=False):
+        stop = False
+        limit = 0
+        while not stop:
+            result = self.dls(self.start, [], False, limit, statistics)
+            if result:
+                if statistics:  # statistics = true
+                    pid = os.getpid()
+                    process = psutil.Process(pid)
+                    memory_use = process.memory_info()[0] / 2. ** 30
+                    print('memory use:', memory_use)
+                    print("Elapsed time (s):", process_time() - self.start_process)
+                    print("Solution found at depth:", result.depth)
+                    print("Number of nodes explored:", self.node_counter)
+                    print("Cost of solution:", result.cost)
+                    print("Estimated effective branching factor:", )
+                    print("------------------------------------")
+                # print(result.state.state)
+                stop = True
+                # print("*****************",limit,"*******************")
+                return result
+            limit += 1
+
+
+
+
+    '''
     def dfs_it(self):
 
         checked_states = [self.start.state.state]  # A set for already visited states
@@ -175,50 +228,6 @@ class SearchAlgorithm:
                     frontier.put(v)
                     if successor.empty():
                         successor = v.successor()
-'''
-'''
-    def dls(self, curr_node, limit):
-        if curr_node.goal_state():
-            return True
-        if limit <= 0:
-            return False
+    '''
 
-        successor = curr_node.successor()
-        if not successor.empty():
-            for v in iter(successor.get, None):  # Go down only one branch to the leaf
-                if self.dls(v, limit-1):
-                    return True
-            return False
 
-    def ids(self, limit):
-        for i in range(limit):
-            if self.dls(self.start, limit):
-                return True
-            return False
-'''
-'''
-    def dls(self, limit):
-        checked_states = set()  # A set for already visited states
-        checked_states.add(self.start)  # Mark the first state (Root Node) as Visited
-
-        frontier = Queue()
-
-        frontier.put(self.start)
-        stop = False
-
-        while not stop:
-            if frontier.empty():
-                return None
-            curr_node = frontier.get()
-            if curr_node in checked_states:
-                continue
-            if curr_node.goal_state():
-                # stop = True
-                return curr_node
-            checked_states.add(successor)
-            successor = curr_node.successor()
-            while not successor.empty():
-                if successor not in checked_states:  # Check if the state has already been visited
-                    # Add the node to the visited states for next checking
-                    frontier.put(successor.get())
-'''
