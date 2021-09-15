@@ -10,7 +10,7 @@ from queue import *
 import os
 import psutil
 from time import process_time
-
+import math
 
 class Node:
     '''
@@ -55,6 +55,26 @@ class Node:
             print("Action: ", self.parent.action)
             self.parent.pretty_print_solution(verbose)
 
+    def h_1(self):
+        pass
+
+
+
+    def h_2(self):
+        '''
+        A method to calculate manhattan distance through sum of the moves.
+        :return: manhattan distance
+        '''
+        manhattan_distance = 0
+        for i in range(len(self.state.state)):
+            for j in range(len(self.state.state[i])):
+                value = self.state.state[i][j]
+                for count, x in enumerate(self.state.goal):
+                    if value in x:
+                        goal_index = (count, x.index(value))
+                        manhattan_distance += abs(goal_index[0]-i) + abs(goal_index[1]-j)
+
+        return manhattan_distance
 
 class SearchAlgorithm:
     '''
@@ -142,7 +162,7 @@ class SearchAlgorithm:
                     result = self.dfs(v, visited, has_found, statistics, node_counter)
                     return result
 
-'''
+    '''
     def dfs_it(self):
 
         checked_states = [self.start.state.state]  # A set for already visited states
@@ -176,8 +196,8 @@ class SearchAlgorithm:
                     frontier.put(v)
                     if successor.empty():
                         successor = v.successor()
-'''
-'''
+    '''
+    '''
     def dls(self, curr_node, limit):
         if curr_node.goal_state():
             return True
@@ -196,8 +216,8 @@ class SearchAlgorithm:
             if self.dls(self.start, limit):
                 return True
             return False
-'''
-'''
+    '''
+    '''
     def dls(self, limit):
         checked_states = set()  # A set for already visited states
         checked_states.add(self.start)  # Mark the first state (Root Node) as Visited
@@ -222,4 +242,5 @@ class SearchAlgorithm:
                 if successor not in checked_states:  # Check if the state has already been visited
                     # Add the node to the visited states for next checking
                     frontier.put(successor.get())
-'''
+    '''
+
