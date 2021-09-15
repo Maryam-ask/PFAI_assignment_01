@@ -7,7 +7,7 @@ from copy import deepcopy
 
 
 class EightPuzzle:
-    def _init_(self, initial_state, goal, eight_value="e"):
+    def __init__(self, initial_state, goal, eight_value="e"):
         self.state = initial_state
         self.eight_value = eight_value
         self.goal = goal

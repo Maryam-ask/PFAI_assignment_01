@@ -15,7 +15,7 @@ goal_state = [['e', 1, 2], [3, 4, 5], [6, 7, 8]]
 
 #puzzle = EightPuzzle(initial_state,goal_state)
 print("Start State: ")
-# puzzle.pretty_print()
+puzzle.pretty_print()
 
 
 print(e_position)
