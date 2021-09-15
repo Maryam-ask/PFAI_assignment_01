@@ -56,8 +56,17 @@ class Node:
             self.parent.pretty_print_solution(verbose)
 
     def h_1(self):
-        pass
+        missplaced_tails = 0
+        for i in range(len(self.state.state)):
+            for j in range(len(self.state.state[i])):
+                value = self.state.state[i][j]
+                for count, x in enumerate(self.state.goal):
+                    if value in x:
+                        goal_index = (count, x.index(value))
+                        if not (goal_index[0] == i and goal_index[1]==j):
+                            missplaced_tails +=1
 
+        return missplaced_tails
 
 
     def h_2(self):
