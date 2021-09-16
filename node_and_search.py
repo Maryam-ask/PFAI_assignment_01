@@ -55,35 +55,6 @@ class Node:
             print("Action: ", self.parent.action)
             self.parent.pretty_print_solution(verbose)
 
-    def h_1(self):
-        missplaced_tails = 0
-        for i in range(len(self.state.state)):
-            for j in range(len(self.state.state[i])):
-                value = self.state.state[i][j]
-                for count, x in enumerate(self.state.goal):
-                    if value in x:
-                        goal_index = (count, x.index(value))
-                        if not (goal_index[0] == i and goal_index[1]==j):
-                            missplaced_tails +=1
-
-        return missplaced_tails
-
-
-    def h_2(self):
-        '''
-        A method to calculate manhattan distance through sum of the moves.
-        :return: manhattan distance
-        '''
-        manhattan_distance = 0
-        for i in range(len(self.state.state)):
-            for j in range(len(self.state.state[i])):
-                value = self.state.state[i][j]
-                for count, x in enumerate(self.state.goal):
-                    if value in x:
-                        goal_index = (count, x.index(value))
-                        manhattan_distance += abs(goal_index[0]-i) + abs(goal_index[1]-j)
-
-        return manhattan_distance
 
 class SearchAlgorithm:
     '''
