@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f88bb06-1b79-4420-a096-a9bd4a876123" name="Default Changelist" comment="move() method update">
+    <list default="true" id="9f88bb06-1b79-4420-a096-a9bd4a876123" name="Default Changelist" comment="misspelled name for variable fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eight_puzzle.py" beforeDir="false" afterPath="$PROJECT_DIR$/eight_puzzle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_and_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/node_and_search.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631967654133</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="misspelled name for variable fixed">
+      <created>1631993107215</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1631993107215</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,7 +219,8 @@
     <MESSAGE value="printing statistics for dfs" />
     <MESSAGE value="process time in dfs" />
     <MESSAGE value="eight puzzle" />
-    <option name="LAST_COMMIT_MESSAGE" value="eight puzzle" />
+    <MESSAGE value="misspelled name for variable fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="misspelled name for variable fixed" />
   </component>
   <component name="WindowStateProjectService">
     <state width="1281" height="203" key="GridCell.Tab.0.bottom" timestamp="1631975299480">
@@ -239,6 +247,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1631992635047" />
+    <state x="129" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1631993125018">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="129" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1631993125018" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -55,7 +55,7 @@ class Node:
         """
         A recursive method to print the whole solution.
         Args :
-            verbose: True or False for printing only actions or printing solutions and actions
+            verbose: True or False. If False it prints only actions or if True it prints solutions and actions
         """
         if self.parent is None:
             return
