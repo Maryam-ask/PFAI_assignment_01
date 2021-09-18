@@ -260,7 +260,7 @@ class SearchAlgorithm:
             curr_node = frontier.get()
             print(curr_node.item.state.state)
             if curr_node.item.goal_state():
-                return curr_node.item.state.state
+                return curr_node.item
 
             successors = curr_node.item.successor()
             while not successors.empty():
@@ -272,25 +272,39 @@ class SearchAlgorithm:
                     successor.f = successor.g + successor.h
                     if successor.state.state not in visited:
                         # print(successor.state.state)
+                        if successor.goal_state():
+                            return successor
                         visited.append(successor.state.state)
                         frontier.put(PrioritizedItem(successor.f, successor))
 
         return False
 
-    def greedy_search(self):
+    def greedy_search(self, h=1):
         frontier = PriorityQueue()
         previous_node = []
 
-        self.start.g = 0
         self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
-        self.start.f = self.start.g + self.start.h
         # print(self.start.g, self.start.h, self.start.f)
-        frontier.put(PrioritizedItem(self.start.f, self.start))
+        frontier.put(PrioritizedItem(self.start.h, self.start))
         # print(open_list.get())
         # print(self.start.state.state)
         visited = [self.start.state.state]
 
         while not frontier.empty():
-            pass
+            curr_node = frontier.get()
+            print(curr_node.item.state.state)
+            if curr_node.item.goal_state():
+                return curr_node.item
+
+            successors = curr_node.item.successor()
+            while not successors.empty():
+                successor = successors.get()
+                if successor.state.state not in visited:
+                    if successor.goal_state():
+                        return successor
+                    visited.append(successor.state.state)
+                    h = successor.state.h_1() if h == 1 else successor.state.h_2()
+                    frontier.put(PrioritizedItem(h, successor))
+        return False
 
 
