@@ -1,0 +1,40 @@
+Assignment 1:
+
+Group members:
+Maryam Askari
+Mahtab Babamohammadi
+
+_________________________________________________________________________________________________________________________________________
+
+Files inclouded in the assignment:
+missionarie_and_cannibals.py : We have implemented 2 methods def mc() and def c() to this file.
+run_assignment_1.py : We've solved the problem with run_assignment_1.py code. It was wrong implemented files name.
+Eight_puzzle.py : It's inclouded all methods such as move(), check_goal(), pretty_print() and also __init__() method to define the stat.
+It also has h_1() function for calculating misplaced tails and h_2() function for calculating manhattan distance.
+node_and_search.py : we have added bfs, dls, ids, greegy_search and a_star_search functions in the SearchAlgorithm class.
+we've also added pretty_print_solutiion method which is a recursive method to the Node class.
+
+__________________________________________________________________________________________________________________________________________
+BFS information has been acquired from statistics:
+memory use: 0.03511810302734375
+Elapsed time (s): 0.3125
+Solution found at depth: 11
+Number of nodes explored: 33
+Cost of solution: 11
+Estimated effective branching factor: 1.3741898036866107
+
+DFS information has been acquired from statistics:
+memory use: 0.03497314453125
+Elapsed time (s): 0.234375
+Solution found at depth: 11
+Number of nodes explored: 10
+Cost of solution: 11
+Estimated effective branching factor: 1.2328467394420661
+
+According to the information obtained the DFS search has less space complexity than the BFS search,
+and the number of explored nodes in DFS is less than BFS.
+In conclude we can see that DFS has found the solution faster than BFS.
+
+____________________________________________________________________________________________________________________________________________
+
+
