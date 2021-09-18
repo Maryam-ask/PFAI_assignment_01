@@ -78,7 +78,7 @@ class SearchAlgorithm:
         self.node_counter = 0
 
     # A * Search Algorithm
-    def a_star(self, h=1):
+    def a_star_search(self, h=1):
         frontier = PriorityQueue()
         previous_node = []
 
@@ -110,8 +110,84 @@ class SearchAlgorithm:
                         visited.append(successor.state.state)
                         frontier.put(PrioritizedItem(successor.f, successor))
 
-
         return False
+
+
+    def bfs(self, statistics=False):  # A parameter statistics to show information about search nodes if statistics=True
+        checked_states = []  # A list for adding visited states in it
+        node_counter = 0    # A counter for counting whole branches
+        frontier = Queue()
+        '''
+        Start with the Root Node which is
+        first state all miss and canns are in the right side 
+        and the boat is 'r': [[0, 0], 'r', [3, 3]]
+        '''
+        frontier.put(self.start)
+
+        stop = False
+        while not stop:
+
+            if frontier.empty():
+                return None
+            curr_node = frontier.get()
+
+            if curr_node.goal_state():
+                stop = True
+                if statistics:   # statistics = true
+                    pid = os.getpid()
+                    process = psutil.Process(pid)
+                    memory_use = process.memory_info()[0] / 2. ** 30
+                    print('memory use:', memory_use)
+                    print("Elapsed time (s):", process_time())
+                    print("Solution found at depth:", curr_node.depth)
+                    print("Number of nodes explored:", node_counter)
+                    print("Cost of solution:", curr_node.cost)
+                    print("Estimated effective branching factor:", )  # TODO: We need to calculate and add effective branching
+                    print("------------------------------------")
+                return curr_node
+
+            successor = curr_node.successor()
+            while not successor.empty():
+                node_counter += 1   # Each time we expand one node, the counter will be increased by adding one
+                v = successor.get()
+                if v.state.state not in checked_states:  # Check if the state has already been visited
+                    frontier.put(v)
+
+                # Add the node to the visited states for next checking
+                checked_states.append(v.state.state)
+
+    def dfs(self, curr_node, visited, has_found, statistics=False, node_counter=0):
+
+        visited.append(curr_node.state.state)
+        # print(node.action, ": ", node.state.state)
+
+        if curr_node.goal_state():
+            has_found = True
+        successor = curr_node.successor()
+        while not successor.empty():
+            v = successor.get()
+            if v.state.state not in visited:
+                if v.goal_state():
+                    has_found = True
+                    # successor = Queue()
+                    if statistics:  # statistics = true
+                        pid = os.getpid()
+                        process = psutil.Process(pid)
+                        memory_use = process.memory_info()[0] / 2. ** 30
+                        print('memory use:', memory_use)
+                        print("Elapsed time (s):", process_time()-self.start_process)
+                        print("Solution found at depth:", v.depth)
+                        print("Number of nodes explored:", node_counter)
+                        print("Cost of solution:", v.cost)
+                        print("Estimated effective branching factor:", )
+                        print("------------------------------------")
+                    result = v
+                    # print(v.action, "*: ", v.state.state)
+                    return result
+                else:
+                    node_counter += 1
+                    result = self.dfs(v, visited, has_found, statistics, node_counter)
+                    return result
 
 
 
