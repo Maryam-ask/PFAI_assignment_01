@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f88bb06-1b79-4420-a096-a9bd4a876123" name="Default Changelist" comment="process time in dfs">
-      <change afterPath="$PROJECT_DIR$/search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eight_puzzle.py" beforeDir="false" afterPath="$PROJECT_DIR$/eight_puzzle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-    </list>
+    <list default="true" id="9f88bb06-1b79-4420-a096-a9bd4a876123" name="Default Changelist" comment="process time in dfs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,7 +98,7 @@
       <workItem from="1631530548523" duration="3866000" />
       <workItem from="1631615779643" duration="2582000" />
       <workItem from="1631626087723" duration="220000" />
-      <workItem from="1631949333247" duration="14226000" />
+      <workItem from="1631949333247" duration="14292000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'main' of https://github.com/Maryam-ask/PFAI_assignment_01">
       <created>1631435665654</created>
@@ -147,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631621594296</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="process time in dfs">
+      <created>1631967590046</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1631967590046</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
