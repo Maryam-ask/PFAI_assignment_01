@@ -23,4 +23,3 @@ puzzle = EightPuzzle(initial_state, goal_state)
 # print(e_position)
 sa = SearchAlgorithm(puzzle)
 print(sa.a_star())
-
