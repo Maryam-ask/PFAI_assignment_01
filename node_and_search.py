@@ -10,6 +10,15 @@ from queue import *
 import os
 import psutil
 from time import process_time
+from dataclasses import dataclass, field
+from typing import Any
+from queue import PriorityQueue
+
+
+@dataclass(order=True)
+class PrioritizedItem:
+    priority: int
+    item: Any = field(compare=False)
 
 
 class Node:
@@ -24,6 +33,9 @@ class Node:
         self.action = action
         self.cost = cost
         self.depth = 0
+        self.g = 9999999 #we need to calculate this three attributes
+        self.h = 0
+        self.f = 9999999
         if parent:
             self.depth = parent.depth + 1
 
@@ -229,5 +241,56 @@ class SearchAlgorithm:
                     if successor.empty():
                         successor = v.successor()
     '''
+
+    # A * Search Algorithm
+    def a_star_search(self, h=1):
+        frontier = PriorityQueue()
+        previous_node = []
+
+        self.start.g = 0
+        self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
+        self.start.f = self.start.g + self.start.h
+        # print(self.start.g, self.start.h, self.start.f)
+        frontier.put(PrioritizedItem(self.start.f, self.start))
+        # print(open_list.get())
+        # print(self.start.state.state)
+        visited = [self.start.state.state]
+
+        while not frontier.empty():
+            curr_node = frontier.get()
+            print(curr_node.item.state.state)
+            if curr_node.item.goal_state():
+                return curr_node.item.state.state
+
+            successors = curr_node.item.successor()
+            while not successors.empty():
+                successor = successors.get()
+                new_g = curr_node.item.g + 1
+                if new_g < successor.g:
+                    successor.g = new_g
+                    successor.h = successor.state.h_1() if h == 1 else successor.state.h_2()
+                    successor.f = successor.g + successor.h
+                    if successor.state.state not in visited:
+                        # print(successor.state.state)
+                        visited.append(successor.state.state)
+                        frontier.put(PrioritizedItem(successor.f, successor))
+
+        return False
+
+    def greedy_search(self):
+        frontier = PriorityQueue()
+        previous_node = []
+
+        self.start.g = 0
+        self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
+        self.start.f = self.start.g + self.start.h
+        # print(self.start.g, self.start.h, self.start.f)
+        frontier.put(PrioritizedItem(self.start.f, self.start))
+        # print(open_list.get())
+        # print(self.start.state.state)
+        visited = [self.start.state.state]
+
+        while not frontier.empty():
+            pass
 
 

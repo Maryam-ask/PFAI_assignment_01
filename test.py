@@ -10,7 +10,7 @@
 # =============================================================================
 
 from eight_puzzle import EightPuzzle
-from search import Node, SearchAlgorithm
+from node_and_search import Node, SearchAlgorithm
 
 initial_state = [[7, 2, 4], [5, 'e', 6], [8, 3, 1]]
 # initial_state = [[1, 'e', 2], [3, 4, 5], [6, 7, 8]]
