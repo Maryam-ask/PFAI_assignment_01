@@ -82,7 +82,7 @@ class SearchAlgorithm:
         open_list = PriorityQueue()
         closed_list = Queue()
 
-        self.start.g = self.start.g
+        self.start.g = 0
         self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
         self.start.f = self.start.g + self.start.h
         # print(self.start.g, self.start.h, self.start.f)
@@ -101,12 +101,17 @@ class SearchAlgorithm:
             # print(successors)
             while not successors.empty():
                 successor = successors.get()
+                # print("injaaa")
                 if successor.state.state not in visited:
+                    # print("inja")
                     new_g = curr_node.item.g + 1
+                    print(new_g, )
                     if new_g < successor.g:
+                        # print("what now?")
                         successor.g = new_g
                         successor.h = successor.state.h_1() if h == 1 else successor.state.h_2()
                         successor.f = successor.g + successor.h
+                        print(PrioritizedItem(successor.f, successor))
                         open_list.put(PrioritizedItem(successor.f, successor))
                 continue
             closed_list.put(curr_node)
