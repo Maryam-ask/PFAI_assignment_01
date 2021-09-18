@@ -43,7 +43,7 @@ class EightPuzzle:
     def up(self):
         i = self.get_e_position(0)
         j = self.get_e_position(1)
-        if 0 < i <= (len(self.state) -1):
+        if 0 < i <= (len(self.state) - 1):
             self.state[i][j] = self.state[i - 1][j]
             self.state[i - 1][j] = self.eight_value
             return True
@@ -63,6 +63,8 @@ class EightPuzzle:
             self.state[i][j] = self.state[i][j + 1]
             self.state[i][j + 1] = self.eight_value
             return True
+        else:
+            return False
 
     def left(self):
         i = self.get_e_position(0)
@@ -71,6 +73,8 @@ class EightPuzzle:
             self.state[i][j] = self.state[i][j - 1]
             self.state[i][j - 1] = self.eight_value
             return True
+        else:
+            return False
 
 
     def h_1(self):
