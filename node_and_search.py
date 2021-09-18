@@ -81,6 +81,7 @@ class SearchAlgorithm:
     def bfs(self, statistics=False):  # A parameter statistics to show information about search nodes if statistics=True
         checked_states = []  # A list for adding visited states in it
         node_counter = 0    # A counter for counting whole branches
+        process_time1= process_time()
         frontier = Queue()
         '''
         Start with the Root Node which is
@@ -97,6 +98,7 @@ class SearchAlgorithm:
             curr_node = frontier.get()
 
             if curr_node.goal_state():
+                process_time2 = process_time()
                 stop = True
                 if statistics:   # statistics = true
                     pid = os.getpid()
@@ -107,7 +109,7 @@ class SearchAlgorithm:
                     print("Solution found at depth:", curr_node.depth)
                     print("Number of nodes explored:", node_counter)
                     print("Cost of solution:", curr_node.cost)
-                    print("Estimated effective branching factor:", )  # TODO: We need to calculate and add effective branching
+                    print("Estimated effective branching factor:", node_counter**(1/curr_node.depth))
                     print("------------------------------------")
                 return curr_node
 
@@ -122,6 +124,15 @@ class SearchAlgorithm:
                 checked_states.append(v.state.state)
 
     def dfs(self, curr_node, visited, has_found, statistics=False, node_counter=0):
+        """
+        Depth-first Search is a recursive function.
+        :param curr_node: The root node
+        :param visited: A list for checking the already visited nodes
+        :param has_found: To check if the goal state has been found
+        :param statistics: if True print the information about the search method
+        :param node_counter: for counting the nodes
+        :return: A Node which has reach the goal state
+        """
 
         visited.append(curr_node.state.state)
         # print(node.action, ": ", node.state.state)
@@ -140,11 +151,11 @@ class SearchAlgorithm:
                         process = psutil.Process(pid)
                         memory_use = process.memory_info()[0] / 2. ** 30
                         print('memory use:', memory_use)
-                        print("Elapsed time (s):", process_time()-self.start_process)
+                        print("Elapsed time (s):", process_time())
                         print("Solution found at depth:", v.depth)
                         print("Number of nodes explored:", node_counter)
                         print("Cost of solution:", v.cost)
-                        print("Estimated effective branching factor:", )
+                        print("Estimated effective branching factor:", node_counter ** (1/v.depth))
                         print("------------------------------------")
                     result = v
                     # print(v.action, "*: ", v.state.state)
@@ -155,6 +166,15 @@ class SearchAlgorithm:
                     return result
 
     def dls(self, curr_node, visited, has_found, limit, statistics=False):
+        """
+        It is a recursive function which is same like DFS but in DLS we have limited the depth.
+        :param curr_node: The root node
+        :param visited: A list for checking the already visited nodes
+        :param has_found: To check if the goal state has been found
+        :param limit: for limiting depth
+        :param statistics: if True print the information about the search method
+        :return: A Node which has reach the goal state
+        """
         if limit == 0:
             if curr_node.goal_state():
                 has_found = True
@@ -244,6 +264,11 @@ class SearchAlgorithm:
 
     # A * Search Algorithm
     def a_star_search(self, h=1):
+        """
+
+        :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
+        :return: A Node which has reach the goal state
+        """
         frontier = PriorityQueue()
         previous_node = []
 
@@ -280,6 +305,11 @@ class SearchAlgorithm:
         return False
 
     def greedy_search(self, h=1):
+        """
+
+        :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
+        :return: A Node which has reach the goal state
+        """
         frontier = PriorityQueue()
         previous_node = []
 
