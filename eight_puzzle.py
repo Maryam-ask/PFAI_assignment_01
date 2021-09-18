@@ -68,8 +68,8 @@ class EightPuzzle:
         i = self.get_e_position(0)
         j = self.get_e_position(1)
         if 0 <= j < len(self.state[i]):
-            self.state[i][j] = self.state[i][j + 1]
-            self.state[i][j + 1] = self.eight_value
+            self.state[i][j] = self.state[i][j - 1]
+            self.state[i][j - 1] = self.eight_value
             return True
 
 
