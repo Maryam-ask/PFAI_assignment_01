@@ -79,77 +79,40 @@ class SearchAlgorithm:
 
     # A * Search Algorithm
     def a_star(self, h=1):
-        open_list = PriorityQueue()
-        closed_list = Queue()
+        frontier = PriorityQueue()
+        previous_node = []
 
         self.start.g = 0
         self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
         self.start.f = self.start.g + self.start.h
         # print(self.start.g, self.start.h, self.start.f)
-        open_list.put(PrioritizedItem(self.start.f, self.start))
+        frontier.put(PrioritizedItem(self.start.f, self.start))
         # print(open_list.get())
         # print(self.start.state.state)
         visited = [self.start.state.state]
 
-        while not open_list.empty():
-            curr_node = open_list.get()
-            # print(curr_node.item)
+        while not frontier.empty():
+            curr_node = frontier.get()
+            print(curr_node.item.state.state)
             if curr_node.item.goal_state():
-                return curr_node.item
+                return curr_node.item.state.state
 
             successors = curr_node.item.successor()
-            # print(successors)
             while not successors.empty():
                 successor = successors.get()
-                # print("injaaa")
-                if successor.state.state not in visited:
-                    # print("inja")
-                    new_g = curr_node.item.g + 1
-                    print(new_g, )
-                    if new_g < successor.g:
-                        # print("what now?")
-                        successor.g = new_g
-                        successor.h = successor.state.h_1() if h == 1 else successor.state.h_2()
-                        successor.f = successor.g + successor.h
-                        print(PrioritizedItem(successor.f, successor))
-                        open_list.put(PrioritizedItem(successor.f, successor))
-                continue
-            closed_list.put(curr_node)
-
-        return visited
-'''
-                to_continue = False
-                copy = PriorityQueue()
-                if successor.state.state in visited:
-                    while not open_list.empty():
-                        node = open_list.get()
-                        copy.put(node)
-                        if node.item.state.state == successor.state.state:
-                            if node.priority < successor.f:
-                                to_continue = True
-                                break
-                while not copy:
-                    open_list.put(copy.get())
-                if to_continue:
-                    continue
-
-                while not closed_list.empty():
-                    node = closed_list.get()
-                    copy.put(node)
-                    if node.item.state.state == successor.state.state:
-                        if node.priority < successor.f:
-                            to_continue = True
-                            open_list.put(PrioritizedItem(successor.f, successor))
-                            break
-                while not copy:
-                    closed_list_list.put(copy.get())
-                if to_continue:
-                    continue
-        closed_list.put(curr_node)
+                new_g = curr_node.item.g + 1
+                if new_g < successor.g:
+                    successor.g = new_g
+                    successor.h = successor.state.h_1() if h == 1 else successor.state.h_2()
+                    successor.f = successor.g + successor.h
+                    if successor.state.state not in visited:
+                        # print(successor.state.state)
+                        visited.append(successor.state.state)
+                        frontier.put(PrioritizedItem(successor.f, successor))
 
 
         return False
-'''
+
 
 
 
