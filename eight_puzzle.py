@@ -1,7 +1,7 @@
 """
 Eight puzzle problem
 
-Author: Maryam Askari & Mahtab BMohammadi
+Author: Maryam Askari & Mahtab BabaMohammadi
 """
 from copy import deepcopy
 
@@ -86,7 +86,6 @@ class EightPuzzle:
 
         return missplaced_tails
 
-
     def h_2(self):
         '''
         A method to calculate manhattan distance through sum of the moves.
@@ -102,6 +101,8 @@ class EightPuzzle:
                         manhattan_distance += abs(goal_index[0]-i) + abs(goal_index[1]-j)
 
         return manhattan_distance
+
+
 
     def pretty_print(self):
         """
