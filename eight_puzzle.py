@@ -78,7 +78,7 @@ class EightPuzzle:
 
 
     def h_1(self):
-        missplaced_tails = 0
+        misplaced_tails = 0
         for i in range(len(self.state)):
             for j in range(len(self.state[i])):
                 value = self.state[i][j]
@@ -86,9 +86,9 @@ class EightPuzzle:
                     if value in x:
                         goal_index = (count, x.index(value))
                         if not (goal_index[0] == i and goal_index[1]==j):
-                            missplaced_tails +=1
+                            misplaced_tails +=1
 
-        return missplaced_tails
+        return misplaced_tails
 
     def h_2(self):
         '''
