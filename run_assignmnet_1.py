@@ -55,7 +55,7 @@ def main():
     # print(puzzle.h_2())
     # print(puzzle.h_1())
     # print(e_position)
-    sa = SearchAlgorithm(puzzle)
+    # sa = SearchAlgorithm(puzzle)
     # solution = sa.greedy_search(statistics=True)
     # solution.pretty_print_solution(True)
     # solution = sa.a_star_search(statistics=True)
