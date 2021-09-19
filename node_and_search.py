@@ -215,9 +215,6 @@ class SearchAlgorithm:
                 return result
             limit += 1
 
-
-
-
     '''
     def dfs_it(self):
 
