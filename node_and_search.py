@@ -265,7 +265,7 @@ class SearchAlgorithm:
     # A * Search Algorithm
     def a_star_search(self, h=1):
         """
-
+        A* search is using heuristic function to solve the problem. f(n) = g(n) + h(n)
         :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
         :return: A Node which has reach the goal state
         """
@@ -306,7 +306,7 @@ class SearchAlgorithm:
 
     def greedy_search(self, h=1):
         """
-
+        Greedy search is using heuristic function to find the solution.
         :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
         :return: A Node which has reach the goal state
         """
