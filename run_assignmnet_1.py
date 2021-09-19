@@ -21,60 +21,95 @@ def main():
     goal_state = [[3, 3], 'l', [0, 0]]
     mc = MissionariesAndCannibals(init_state, goal_state)
     sa = SearchAlgorithm(mc)
+
     """
-    To print the solution through BFS search:
+    BFS:
+    """
+    #solution = sa.bfs()
+    #solution = sa.bfs(statistics=True)
+
+
+    """
+    DFS:
+    """
+    #solution = sa.dfs(sa.start, [], has_found=False)
+    #solution = sa.dfs(sa.start, [], has_found=False, statistics=True)
+
+
+    """
+    IDS: 
+    """
+    #solution = sa.ids()
+    #solution = sa.ids(statistics=True)
+
+    """
+    Printing out the solution of missionaries_and_cannibals with pretty_print_solution:
     """
     #mc.pretty_print()
-    # solution = sa.bfs()
-    # solution = sa.bfs(True)  # BFS using Statistics = True
+    #solution.pretty_print_solution(True)   # Verbose = True for printing actions and states
     #solution.pretty_print_solution1(False)    # verbose = False for only printing actions
-    # solution.pretty_print_solution(True)   # Verbose = True for printing actions and states
 
     """
-    To print the solution through DFS search
+    ********************************************************************************************************************
+    Eight_Puzzle problem 
     """
-    # mc.pretty_print()
-    # solution = sa.dfs(sa.start, [], False)
-    # solution = sa.dfs(sa.start, [], False, True)   # Statistics = True
-    # solution.pretty_print_solution(True)   # Verbose = True
-    #solution.pretty_print_solution()       # verbose = False
-
-    """
-    To print the solution through IDS search 
-    """
-    # solution = sa.ids(True)
-    # solution.pretty_print_solution(True)
-
-    # Eight_puzzle
     initial_state = [[7, 2, 4], [5, 'e', 6], [8, 3, 1]]
     goal_state = [['e', 1, 2], [3, 4, 5], [6, 7, 8]]
 
     puzzle = EightPuzzle(initial_state, goal_state)
-    # print("Start State: ")
-    # puzzle.pretty_print()
-    # print(puzzle.h_2())
-    # print(puzzle.h_1())
-    # print(e_position)
     sa = SearchAlgorithm(puzzle)
-    # solution = sa.greedy_search(statistics=True)
-    # solution.pretty_print_solution(True)
-    # solution = sa.a_star_search(statistics=True)
-    # solution.pretty_print_solution(True)
-    #print(dfs_rec.action, "**: ", dfs_rec.state.state)
-    #print(dfs_rec)
-    # if solution:
-    #    print("Answer found")
 
-    #solution.pretty_print_solution()
-    # print(solution)
+    # print(puzzle.h_2())   # manhattan distance
+    # print(puzzle.h_1())   # number of tails out of place
+    # print(e_position)
+
+    """
+    Greedy search with h=1 to solve the problem with number of misplaced tiles heuristic function.
+    """
+    #solution = sa.greedy_search()
+    #solution = sa.greedy_search(statistics=True)
+
+    """
+    Greedy search with h=2 to solve the problem with manhattan distance heuristic function.
+    """
+    #solution = sa.greedy_search(h=2)
+    #solution = sa.greedy_search(h=2, statistics=True)
+
+    """
+    A_Star search with h=1
+    """
+    #solution = sa.a_star_search()
+    # solution = sa.a_star_search(statistics=True)
+
+    """
+    A_Star search with h=2
+    """
+    # solution = sa.a_star_search(h=2)
+    #solution = sa.a_star_search(h=2, statistics=True)
+
     '''
-    print('BFS')
-    print('Start state: ')
-    mc.pretty_print()
-    goal_node = sa.bfs()
-    print('goal state: ')
-    goal_node.state.pretty_print()
+    BFS:
     '''
+    #solution = sa.bfs(statistics=True)
+
+    '''
+    DFS:
+    '''
+    solution = sa.dfs(sa.start, [], has_found=False, statistics=True)
+
+    '''
+    IDS:
+    '''
+    #solution = sa.ids(statistics=True)
+
+    """
+    Printing out the solution with pretty_print_solution:
+    """
+    #puzzle.pretty_print()
+    #solution.pretty_print_solution(True)    # Verbose = True for printing actions and states
+    #solution.pretty_print_solution()       # verbose = False for only printing actions
+
+
 
 if __name__ == "__main__":
     main()

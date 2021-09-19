@@ -9,40 +9,103 @@ ________________________________________________________________________________
 Files included in the assignment:
 missionaries_and_cannibals.py : We have implemented 2 methods def mc() and def c() to this file.
 run_assignment_1.py : We've solved the problem with run_assignment_1.py code. It was wrong implemented files name.
-Eight_puzzle.py : It's included all methods such as move(), check_goal(), pretty_print() and also __init__() method to define the stat.
+Eight_puzzle.py : It's included all methods such as move(), check_goal(), pretty_print() and also __init__() method to define the state.
 It also has h_1() function for calculating misplaced tails and h_2() function for calculating manhattan distance.
 node_and_search.py : we have added bfs, dls, ids, greedy_search and a_star_search functions in the SearchAlgorithm class.
 we've also added pretty_print_solution method which is a recursive method to the Node class.
-
+Assignment_1.txt: It includes all of our notes and information that we've gathered from the statistics function:
 __________________________________________________________________________________________________________________________________________
+1)
 BFS information has been acquired from statistics:
-memory use: 0.03511810302734375
-Elapsed time (s): 0.3125
+memory use: 0.00916290283203125
+Elapsed time (s): 0.01266399999999998
 Solution found at depth: 11
 Number of nodes explored: 33
 Cost of solution: 11
 Estimated effective branching factor: 1.3741898036866107
 
 DFS information has been acquired from statistics:
-memory use: 0.03497314453125
-Elapsed time (s): 0.234375
-Solution found at depth: 11
+memory use: 0.0091400146484375
+Elapsed time (s): 0.003937999999999997
+Solution found at depth: 10
 Number of nodes explored: 10
-Cost of solution: 11
-Estimated effective branching factor: 1.2328467394420661
-
+Cost of solution: 10
+Estimated effective branching factor: 1.2589254117941673
+Note:
 According to the information obtained the DFS search has used less memory than the BFS search,
 and the number of explored nodes in DFS are less than BFS.
 In conclude we can see that DFS has found the solution faster than BFS.
 
 ____________________________________________________________________________________________________________________________________________
+2)
+DFS information without checking visited nodes:
+We've gotten the below error when we run DFS without checking the visited nodes:
+RecursionError: maximum recursion depth exceeded while calling a Python object
+____________________________________________________________________________________________________________________________________________
+3)
 BFS information without checking visited nodes:
-memory use: 0.059429168701171875
-Elapsed time (s): 1.5625
+memory use: 0.03478240966796875
+Elapsed time (s): 4.966722000000001
 Solution found at depth: 11
 Number of nodes explored: 24278
 Cost of solution: 11
 Estimated effective branching factor: 2.504123355505519
-
-Based on this information the number of explored nodes have raised from 33 to 24278,
+Note:
+Based on this information the number of explored nodes have raised from 33 to 24278.
 and we can see that the process time and usage of memory have been increased as well.
+____________________________________________________________________________________________________________________________________________
+IDS information has been acquired from statistics:
+memory use: 0.009204864501953125
+Elapsed time (s): 0.04391600000000001
+Solution found at depth: 11
+Number of nodes explored: 65
+Cost of solution: 11
+Estimated effective branching factor: 1.4615386516901678
+
+____________________________________________________________________________________________________________________________________________
+Greedy search information based on h_1(number of misplaced tails) has been acquired from statistics:
+memory use: 0.00940704345703125
+Elapsed time (s): 0.10197800000000001
+Solution found at depth: 44
+Number of nodes explored: 115
+Cost of solution: 44
+Estimated effective branching factor: 1.1138688064299702
+
+____________________________________________________________________________________________________________________________________________
+Greedy search information based on h_2(manhattan distance) has been acquired from statistics:
+memory use: 0.00926971435546875
+Elapsed time (s): 0.10624999999999998
+Solution found at depth: 36
+Number of nodes explored: 73
+Cost of solution: 36
+Estimated effective branching factor: 1.1265720397598766
+
+____________________________________________________________________________________________________________________________________________
+A* search information based on h_1(number of misplaced tails) has been acquired from statistics:
+memory use: 0.0677337646484375
+Elapsed time (s): 770.478624
+Solution found at depth: 26
+Number of nodes explored: 34973
+Cost of solution: 26
+Estimated effective branching factor: 1.4954054435546555
+
+____________________________________________________________________________________________________________________________________________
+A* search information based on h_2(manhattan distance) has been acquired from statistics:
+memory use: 0.015472412109375
+Elapsed time (s): 6.671868
+Solution found at depth: 26
+Number of nodes explored: 3206
+Cost of solution: 26
+Estimated effective branching factor: 1.364095419765401
+
+____________________________________________________________________________________________________________________________________________
+Eight_puzzle solution with BFS:
+time_out
+
+____________________________________________________________________________________________________________________________________________
+Eight_puzzle solution with DFS:
+time_out
+
+____________________________________________________________________________________________________________________________________________
+Eight_puzzle solution with IDs:
+time_out

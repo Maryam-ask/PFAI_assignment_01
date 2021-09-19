@@ -79,6 +79,13 @@ class SearchAlgorithm:
         self.node_counter = 0
 
     def statistics_calculator(self, depth, node_counter, cost):
+        """
+        A method to show statistics information of search functions.
+        :param depth: depth of the last node
+        :param node_counter: number of explored nodes
+        :param cost: cost of solution
+        :return: printing out the result
+        """
         pid = os.getpid()
         process = psutil.Process(pid)
         memory_use = process.memory_info()[0] / 2. ** 30
