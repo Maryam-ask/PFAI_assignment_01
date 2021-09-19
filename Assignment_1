@@ -45,4 +45,4 @@ Cost of solution: 11
 Estimated effective branching factor: 2.504123355505519
 
 Based on this information the number of explored nodes have raised from 33 to 24278,
-and we can see that the process time and usage of memory has been increased as well.
+and we can see that the process time and usage of memory have been increased as well.
