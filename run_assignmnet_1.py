@@ -25,18 +25,18 @@ def main():
     To print the solution through IDS search:
     """
     #mc.pretty_print()
-    #solution = sa.bfs()
-    #solution = sa.bfs(True)  # BFS using Statistics = True
+    # solution = sa.bfs()
+    # solution = sa.bfs(True)  # BFS using Statistics = True
     #solution.pretty_print_solution1(False)    # verbose = False for only printing actions
-    #solution.pretty_print_solution(True)   # Verbose = True for printing actions and states
+    # solution.pretty_print_solution(True)   # Verbose = True for printing actions and states
 
     """
     To print the solution through DFS search
     """
     # mc.pretty_print()
-    #solution = sa.dfs(sa.start, [], False)
-    #solution = sa.dfs(sa.start, [], False, True)   # Statistics = True
-    #solution.pretty_print_solution(True)   # Verbose = True
+    # solution = sa.dfs(sa.start, [], False)
+    # solution = sa.dfs(sa.start, [], False, True)   # Statistics = True
+    # solution.pretty_print_solution(True)   # Verbose = True
     #solution.pretty_print_solution()       # verbose = False
 
     """
@@ -56,9 +56,9 @@ def main():
     # print(puzzle.h_1())
     # print(e_position)
     sa = SearchAlgorithm(puzzle)
-    # solution = sa.ids(True)
+    # solution = sa.greedy_search(statistics=True)
     # solution.pretty_print_solution(True)
-    # solution = sa.greedy_search()
+    # solution = sa.a_star_search(statistics=True)
     # solution.pretty_print_solution(True)
     #print(dfs_rec.action, "**: ", dfs_rec.state.state)
     #print(dfs_rec)

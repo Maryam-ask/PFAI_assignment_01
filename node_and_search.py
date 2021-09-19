@@ -78,10 +78,22 @@ class SearchAlgorithm:
         self.start_process = process_time()
         self.node_counter = 0
 
+    def statistics_calculator(self, depth, node_counter, cost):
+        pid = os.getpid()
+        process = psutil.Process(pid)
+        memory_use = process.memory_info()[0] / 2. ** 30
+        print('memory use:', memory_use)
+        print("Elapsed time (s):", process_time()-self.start_process)
+        print("Solution found at depth:", depth)
+        print("Number of nodes explored:", node_counter)
+        print("Cost of solution:", cost)
+        print("Estimated effective branching factor:", node_counter ** (1 / depth))
+        print("------------------------------------")
+
     def bfs(self, statistics=False):  # A parameter statistics to show information about search nodes if statistics=True
+        self.start_process = process_time()
         checked_states = []  # A list for adding visited states in it
         node_counter = 0    # A counter for counting whole branches
-        process_time1= process_time()
         frontier = Queue()
         '''
         Start with the Root Node which is
@@ -98,19 +110,9 @@ class SearchAlgorithm:
             curr_node = frontier.get()
 
             if curr_node.goal_state():
-                process_time2 = process_time()
                 stop = True
                 if statistics:   # statistics = true
-                    pid = os.getpid()
-                    process = psutil.Process(pid)
-                    memory_use = process.memory_info()[0] / 2. ** 30
-                    print('memory use:', memory_use)
-                    print("Elapsed time (s):", process_time())
-                    print("Solution found at depth:", curr_node.depth)
-                    print("Number of nodes explored:", node_counter)
-                    print("Cost of solution:", curr_node.cost)
-                    print("Estimated effective branching factor:", node_counter**(1/curr_node.depth))
-                    print("------------------------------------")
+                    self.statistics_calculator(curr_node.depth, node_counter, curr_node.cost)
                 return curr_node
 
             successor = curr_node.successor()
@@ -133,7 +135,7 @@ class SearchAlgorithm:
         :param node_counter: for counting the nodes
         :return: A Node which has reach the goal state
         """
-
+        self.start_process = process_time()
         visited.append(curr_node.state.state)
         # print(node.action, ": ", node.state.state)
 
@@ -147,16 +149,7 @@ class SearchAlgorithm:
                     has_found = True
                     # successor = Queue()
                     if statistics:  # statistics = true
-                        pid = os.getpid()
-                        process = psutil.Process(pid)
-                        memory_use = process.memory_info()[0] / 2. ** 30
-                        print('memory use:', memory_use)
-                        print("Elapsed time (s):", process_time())
-                        print("Solution found at depth:", v.depth)
-                        print("Number of nodes explored:", node_counter)
-                        print("Cost of solution:", v.cost)
-                        print("Estimated effective branching factor:", node_counter ** (1/v.depth))
-                        print("------------------------------------")
+                        self.statistics_calculator(curr_node.depth, node_counter, curr_node.cost)
                     result = v
                     # print(v.action, "*: ", v.state.state)
                     return result
@@ -201,22 +194,14 @@ class SearchAlgorithm:
                         return result
 
     def ids(self, statistics=False):
+        self.start_process = process_time()
         stop = False
         limit = 0
         while not stop:
             result = self.dls(self.start, [], False, limit, statistics)
             if result:
                 if statistics:  # statistics = true
-                    pid = os.getpid()
-                    process = psutil.Process(pid)
-                    memory_use = process.memory_info()[0] / 2. ** 30
-                    print('memory use:', memory_use)
-                    print("Elapsed time (s):", process_time() - self.start_process)
-                    print("Solution found at depth:", result.depth)
-                    print("Number of nodes explored:", self.node_counter)
-                    print("Cost of solution:", result.cost)
-                    print("Estimated effective branching factor:", )
-                    print("------------------------------------")
+                    self.statistics_calculator(result.depth, self.node_counter, result.cost)
                 # print(result.state.state)
                 stop = True
                 # print("*****************",limit,"*******************")
@@ -262,13 +247,53 @@ class SearchAlgorithm:
                         successor = v.successor()
     '''
 
-    # A * Search Algorithm
-    def a_star_search(self, h=1):
+    def greedy_search(self, h=1, statistics=False):
         """
 
         :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
         :return: A Node which has reach the goal state
         """
+        self.start_process = process_time()
+        frontier = PriorityQueue()
+        previous_node = []
+
+        self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
+        # print(self.start.g, self.start.h, self.start.f)
+        frontier.put(PrioritizedItem(self.start.h, self.start))
+        # print(open_list.get())
+        # print(self.start.state.state)
+        visited = [self.start.state.state]
+
+        while not frontier.empty():
+            curr_node = frontier.get()
+            self.node_counter += 1
+            # print(curr_node.item.state.state)
+            if curr_node.item.goal_state():
+                if statistics:  # statistics = true
+                    self.statistics_calculator(curr_node.item.depth, self.node_counter, curr_node.item.cost)
+                return curr_node.item
+
+            successors = curr_node.item.successor()
+            while not successors.empty():
+                successor = successors.get()
+                if successor.state.state not in visited:
+                    if successor.goal_state():
+                        if statistics:  # statistics = true
+                            self.statistics_calculator(successor.depth, self.node_counter, successor.cost)
+                        return successor
+                    visited.append(successor.state.state)
+                    h = successor.state.h_1() if h == 1 else successor.state.h_2()
+                    frontier.put(PrioritizedItem(h, successor))
+        return False
+
+    # A * Search Algorithm
+    def a_star_search(self, h=1, statistics=False):
+        """
+
+        :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
+        :return: A Node which has reach the goal state
+        """
+        self.start_process = process_time()
         frontier = PriorityQueue()
         previous_node = []
 
@@ -283,8 +308,11 @@ class SearchAlgorithm:
 
         while not frontier.empty():
             curr_node = frontier.get()
-            print(curr_node.item.state.state)
+            self.node_counter += 1
+            # print(curr_node.item.state.state)
             if curr_node.item.goal_state():
+                if statistics:  # statistics = true
+                    self.statistics_calculator(curr_node.item.depth, self.node_counter, curr_node.item.cost)
                 return curr_node.item
 
             successors = curr_node.item.successor()
@@ -298,43 +326,12 @@ class SearchAlgorithm:
                     if successor.state.state not in visited:
                         # print(successor.state.state)
                         if successor.goal_state():
+                            if statistics:  # statistics = true
+                                self.statistics_calculator(successor.depth, self.node_counter, successor.cost)
                             return successor
                         visited.append(successor.state.state)
                         frontier.put(PrioritizedItem(successor.f, successor))
 
-        return False
-
-    def greedy_search(self, h=1):
-        """
-
-        :param h: if h=1 it will use h_1(sum of misplaced tails) and if h=2 it will use h_2(manhattan distance)
-        :return: A Node which has reach the goal state
-        """
-        frontier = PriorityQueue()
-        previous_node = []
-
-        self.start.h = self.start.state.h_1() if h == 1 else self.start.state.h_2()
-        # print(self.start.g, self.start.h, self.start.f)
-        frontier.put(PrioritizedItem(self.start.h, self.start))
-        # print(open_list.get())
-        # print(self.start.state.state)
-        visited = [self.start.state.state]
-
-        while not frontier.empty():
-            curr_node = frontier.get()
-            print(curr_node.item.state.state)
-            if curr_node.item.goal_state():
-                return curr_node.item
-
-            successors = curr_node.item.successor()
-            while not successors.empty():
-                successor = successors.get()
-                if successor.state.state not in visited:
-                    if successor.goal_state():
-                        return successor
-                    visited.append(successor.state.state)
-                    h = successor.state.h_1() if h == 1 else successor.state.h_2()
-                    frontier.put(PrioritizedItem(h, successor))
         return False
 
 
