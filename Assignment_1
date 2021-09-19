@@ -6,13 +6,13 @@ Mahtab Babamohammadi
 
 _________________________________________________________________________________________________________________________________________
 
-Files inclouded in the assignment:
-missionarie_and_cannibals.py : We have implemented 2 methods def mc() and def c() to this file.
+Files included in the assignment:
+missionaries_and_cannibals.py : We have implemented 2 methods def mc() and def c() to this file.
 run_assignment_1.py : We've solved the problem with run_assignment_1.py code. It was wrong implemented files name.
-Eight_puzzle.py : It's inclouded all methods such as move(), check_goal(), pretty_print() and also __init__() method to define the stat.
+Eight_puzzle.py : It's included all methods such as move(), check_goal(), pretty_print() and also __init__() method to define the stat.
 It also has h_1() function for calculating misplaced tails and h_2() function for calculating manhattan distance.
-node_and_search.py : we have added bfs, dls, ids, greegy_search and a_star_search functions in the SearchAlgorithm class.
-we've also added pretty_print_solutiion method which is a recursive method to the Node class.
+node_and_search.py : we have added bfs, dls, ids, greedy_search and a_star_search functions in the SearchAlgorithm class.
+we've also added pretty_print_solution method which is a recursive method to the Node class.
 
 __________________________________________________________________________________________________________________________________________
 BFS information has been acquired from statistics:
@@ -31,10 +31,18 @@ Number of nodes explored: 10
 Cost of solution: 11
 Estimated effective branching factor: 1.2328467394420661
 
-According to the information obtained the DFS search has less space complexity than the BFS search,
-and the number of explored nodes in DFS is less than BFS.
+According to the information obtained the DFS search has used less memory than the BFS search,
+and the number of explored nodes in DFS are less than BFS.
 In conclude we can see that DFS has found the solution faster than BFS.
 
 ____________________________________________________________________________________________________________________________________________
+BFS information without checking visited nodes:
+memory use: 0.059429168701171875
+Elapsed time (s): 1.5625
+Solution found at depth: 11
+Number of nodes explored: 24278
+Cost of solution: 11
+Estimated effective branching factor: 2.504123355505519
 
-
+Based on this information the number of explored nodes have raised from 33 to 24278,
+and we can see that the process time and usage of memory has been increased as well.
