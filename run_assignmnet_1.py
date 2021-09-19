@@ -22,7 +22,7 @@ def main():
     mc = MissionariesAndCannibals(init_state, goal_state)
     sa = SearchAlgorithm(mc)
     """
-    To print the solution through IDS search:
+    To print the solution through BFS search:
     """
     #mc.pretty_print()
     # solution = sa.bfs()
